@@ -24,6 +24,7 @@ const typeDefs = gql`
     ENG
     USA
     GER
+    IND
   }
 
   type Query {
@@ -31,6 +32,25 @@ const typeDefs = gql`
     user(id: ID!): User!
     movies: [Movie!]!
     movie(name: String!): Movie!
+  }
+
+  input CreateUserInput {
+    name: String!
+    age: Int!
+    username: String!
+    nationality: String!
+  }
+
+  input UpdateUserInput {
+    id: ID!
+    username: String
+    nationality: String
+  }
+
+  type Mutation {
+    createUser(input: CreateUserInput!): User!
+    updateUser(input: UpdateUserInput!): User!
+    deleteUser(id: ID!): User
   }
 `
 module.exports = { typeDefs }
